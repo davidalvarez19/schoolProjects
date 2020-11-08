@@ -1,0 +1,98 @@
+<!--David Alvarez | COP2822.0M1 | Final Project-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Greg's Gambits | Unbreakable Secret Message Encoder</title>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/playgames.css">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Josefin+Sans:ital,wght@0,400;1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            header h1{font-size: 140%;}
+            main{margin: 0;}
+            section h2{text-align: center;}
+            section p{text-align: center;}
+            section table{margin-bottom: .5em;}
+        </style>
+        <script type="text/javascript">
+            function encodeIt()
+            {
+                document.getElementById("message").innerHTML  = ("<h2>&nbsp;</h2>");
+                var msg = prompt("Enter your message.", " ");
+                var newmsg = " ";
+                var randomNum = 0;
+                var newCode = 0;
+                var specialCode = 3;
+		 
+                //the loop encodes each letter in the message string
+                randomNum = (Math.floor(Math.random() * 35) + 1);
+                for (var j = 0; j < msg.length; j++)
+                {
+                    //check for upppercase letters and encode them
+                    if ((msg.charCodeAt(j)>=65) && (msg.charCodeAt(j)<=90))
+                    {
+                        newCode = (msg.charCodeAt(j) + randomNum);
+                    }
+                    else 
+                        //check for lowercase letters and encode them
+                        if ((msg.charCodeAt(j)>=97) && (msg.charCodeAt(j)<=122)) 
+                        {
+                            newCode = (msg.charCodeAt(j) - randomNum);
+                        }
+                    else
+                        //check for numbers and special characters and encode them
+                        if (((msg.charCodeAt(j) > 90) && (msg.charCodeAt(j) < 97)) || (msg.charCodeAt(j) < 65))
+                        {
+                            if((msg.charCodeAt(j) > 90) && (msg.charCodeAt(j) < 97))
+                                newCode = msg.charCodeAt(j) - randomNum;
+                            else
+                                newCode = msg.charCodeAt(j) + randomNum;
+                        }
+                    //add each encoded character to the new message
+                    newmsg = newmsg + " " + String.fromCharCode(newCode);
+			  
+                }
+                //display the encoded message on the web page
+                document.getElementById("secret").innerHTML = ("<p>" + newmsg + "</p>");
+                //decide if random key should be shown
+                var keyChoice = prompt("Do you want the algorithm key to be displayed? Yes or No?", " ");
+                if ((keyChoice.charAt(0) == 'y') || (keyChoice.charAt(0) =='Y'))
+                    document.getElementById("key").innerHTML = ("<p>" + randomNum + "</p>");
+		      //decide if original message should be shown
+                var choice = prompt("Do you want the original message displayed? Yes or No?", " ");
+                if ((choice.charAt(0) == 'y') || (choice.charAt(0) == 'Y'))
+                    {
+                        document.getElementById("message").innerHTML = ("<p>" + msg + "</p>");
+                    }
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="../images/superhero.jpg" width="120" height="120" class="floatleft" />
+            <h1>Unbreakable Secret Message Encoder</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../play_games.html">Play a Game</a></li>
+                <li><a href="../aboutyou.html">About You</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section style="margin: 0;">
+            <h2 style="margin: .5em 0;">Write A Message and Encode It</h2>
+            <p><input type="button" id="encode" value="Enter your message" onclick="encodeIt();" /></p>
+            <table cellpadding="2" width = "90%" align = "center" border="1">
+                <tr> <td align="center" id="secret"><p>encoded message</p></td> </tr> 
+                <tr> <td align="center" id="key"><p>algorithm key</p></td> </tr>  
+                <tr> <td align="center" id="message"><p>deciphered message</p></td></tr>
+            </table>
+        </section>
+        </main>
+        <footer>
+            <p>&copy; 2020 Greg's Gambits | <a href="mailto:david.alvarez@go.sfcollege.edu">Email Us</a></p>
+        </footer>
+    </body>
+</html>

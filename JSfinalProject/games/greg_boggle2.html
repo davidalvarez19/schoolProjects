@@ -1,0 +1,81 @@
+<!--David Alvarez | COP2822.0M1 | Final Project-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Greg's Gambits | Greg's Boggle</title>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/playgames.css">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Josefin+Sans:ital,wght@0,400;1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            section h2{margin: 0;}
+        </style>
+        <script type="text/javascript" src="../js/gregBoggle.js"></script>
+        <script>
+            function boggle()
+            {
+                var play = "";
+                var score = 0; var flag = 0;
+                var num = Math.floor(Math.random()*8) + 1;
+                compWords = new Array; notAword = new Array();
+                playWords = new Array();
+                compWords = words(num);
+                yourWord = compWords[0];
+                document.getElementById("letters").innerHTML = yourWord;
+
+	           //get player entries
+                while (play != "Q")
+                {
+                    play = prompt("enter a word or enter Q when done");
+                    playWords.push(play);
+                    if(play != "Q")
+                        document.getElementById("entries").innerHTML = playWords.toString();
+                }
+	           //check winning score and list bad words
+                var complgth = compWords.length;
+                var playlgth = (playWords.length - 1);
+                for (var i = 0; i < playlgth; i++)
+                {
+                    flag = 0;
+                    for (var k = 0; k < complgth; k++)
+                    {
+                        if(playWords[i] == compWords[k])
+                        {
+                            score++;
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0)
+                        notAword.push(playWords[i]);
+                }
+                document.getElementById("result").innerHTML = ("Your score is " + score + ".<br><br>The following entries are not valid words: <br>" + notAword.toString());
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="../images/superhero.jpg" width="120" height="120" class="floatleft" />
+            <h1>Greg's Boggle</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../play_games.html">Play a Game</a></li>
+                <li><a href="../aboutyou.html">About You</a></li>
+            </ul>
+        </nav>
+        <main style="padding-right: 4%;">
+            <section style="margin: 0;">
+                <p>The object of the game is to create as many words as you can, in a given time limit, from the letters shown below. When you are ready to begin, click the button.</p>
+                <p><input type="button" value="Begin the Game" onclick="boggle();" /></p>
+                <h2>Letters you can use: <div id = "letters">&nbsp;</div></h2>
+                <h2>Your words so far: <div id = "entries"> &nbsp;</div></h2>
+                <h2>Results: <div id="result">&nbsp;</div></h2>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2020 Greg's Gambits | <a href="mailto:david.alvarez@go.sfcollege.edu">Email Us</a></p>
+        </footer>	
+    </body>
+</html>

@@ -1,0 +1,210 @@
+<!--David Alvarez | COP2822.0M1 | Final Project-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Greg's Gambits | Maze</title>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/playgames.css">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Josefin+Sans:ital,wght@0,400;1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            main{margin: 1em 0;}
+            section{margin: auto;}
+            table img {
+                width: 100%;
+            }
+            table{
+                max-width: 490px;
+                max-height: 490px;
+            }
+            td{
+                border: solid black 2px;
+                max-width: 120px;
+                max-height: 120px;;
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript">
+            //declare variables
+            var cells;
+            var pitfall = false;
+            var pitfall1 = new Array(0, 0);
+            var pitfall2 = new Array(1, 0);
+            var pitfall3 = new Array(2, 0);
+            var heroLocation = new Array(0, 0);
+    
+            //create an array of elements to fill with images
+            function fillBoard()
+            {
+                cells = new Array([document.getElementById("cell00"), document.getElementById("cell01"), document.getElementById("cell02"), document.getElementById("cell03")], [document.getElementById("cell10"), document.getElementById("cell11"), document.getElementById("cell12"), document.getElementById("cell13")], [document.getElementById("cell20"), document.getElementById("cell21"), document.getElementById("cell22"), document.getElementById("cell23")], [document.getElementById("cell30"), document.getElementById("cell31"), document.getElementById("cell32"), document.getElementById("cell33")]);
+                placeImages();
+                heroLocation[0] = 0;
+                heroLocation[1] = 0;
+                generatePitfalls();
+            }
+            //place images in their default positions
+            function placeImages()
+            {
+                for (var rows = 0; rows < 4; rows++)
+                {
+                    for (var cols = 0; cols < 4; cols++)
+                    {
+                        if (rows == 0 && cols == 0)
+                            cells[rows][cols].innerHTML = ("<img src='../images/myHero.png'/>");
+                        else if (rows == 3 && cols == 3)
+                            cells[rows][cols].innerHTML = ("<img src='../images/saved.png'/>");
+                        else
+                            cells[rows][cols].innerHTML = ("<img src='../images/blue.png'/>");
+                    }
+                }
+            }
+            //traverse the board
+            function doClick(row, col)
+            {
+                var top = row - 1;
+                var bottom = row + 1;
+                var left = col - 1;
+                var right = col + 1;
+                if (heroLocation[0] == row && heroLocation[1] == left)
+                {
+                    checkPitfall(row, col);
+                    if (pitfall == false)
+                    {
+                        swap(row, col);
+                        heroLocation[0] = row;
+                        heroLocation[1] = col; 
+                    }
+                }
+            
+                else if (heroLocation[0] == row && heroLocation[1] == right)
+                {
+                    checkPitfall(row, col);
+                    if (pitfall == false)
+                    {
+                        swap(row, col);
+                        heroLocation[0] = row;
+                        heroLocation[1] = col; 
+                    } 
+                }
+                else if (heroLocation[0] == top && heroLocation[1] == col)
+                {
+                    checkPitfall(row, col);
+                    if (pitfall == false)
+                    {
+                        swap(row, col);
+                        heroLocation[0] = row;
+                        heroLocation[1] = col; 
+                    }
+                }
+                else if (heroLocation[0] == bottom && heroLocation[1] == col)
+                {
+                    checkPitfall(row, col);
+                    if (pitfall == false)
+                    {
+                        swap(row, col);
+                        heroLocation[0] = row;
+                        heroLocation[1] = col; 
+                    } 
+                }
+                else    
+                    alert("Illegal move");
+                checkWinner();
+            }
+            function generatePitfalls()
+            {
+                do{
+                    pitfall1[1] = Math.floor(Math.random() * 3 + 2);
+                    pitfall2[1] = Math.floor(Math.random() * 2);
+                    pitfall3[0] = Math.floor(Math.random() * 3 + 2);
+                    pitfall3[1] = Math.floor(Math.random() * 2);
+                } while (pitfall1[1] == 2 && pitfall2[1] == 1 && pitfall3[0] == 1 && pitfall3[1] == 0)
+            }
+            function checkPitfall(row, col)
+            {
+                if (row == pitfall1[0] && col == pitfall1[1])
+                {
+                    alert("You fell into a pit!");
+                    pitfall = true;
+                }
+                else if (row == pitfall2[0] && col == pitfall2[1])
+                {
+                    alert("You fell into a pit!");
+                    pitfall = true;
+                }
+                else if (row == pitfall3[0] && col == pitfall3[1])
+                {
+                    alert("You fell into a pit!");
+                    pitfall = true;
+                }
+                else
+                    pitfall = false;
+            }
+            function swap(targetRow, targetCol)
+            {
+                var targetCell = cells[targetRow][targetCol];
+                var currentCell = cells[heroLocation[0]][heroLocation[1]];
+                targetCell.innerHTML = currentCell.innerHTML;
+                currentCell.innerHTML = ("<img src='../images/blue.png'/>");
+            }
+            function checkWinner()
+            {
+                if (heroLocation[0] == 3 && heroLocation[1] == 3)
+                {
+                    if(window.prompt("You win!! \n Enter 'Yes' to play again", "Yes"))
+                    {
+                        location.reload();
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload = "fillBoard()">
+        <header>
+            <img src="../images/superhero.jpg" width="120" height="120" class="floatleft" />
+            <h1>Greg's Maze</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../play_games.html">Play a Game</a></li>
+                <li><a href="../aboutyou.html">About You</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td height = "60"> <span onclick = "doClick(0, 0)" id = "cell00" /></td>
+                            <td> <span onclick = "doClick(0, 1)" id = "cell01" /></td>
+                            <td> <span onclick = "doClick(0, 2)" id = "cell02" /></td>
+                            <td> <span onclick = "doClick(0, 3)" id = "cell03" /></td>
+                        </tr>
+                        <tr>
+                            <td height = "60"> <span onclick = "doClick(1, 0)" id = "cell10" /></td>
+                            <td> <span onclick = "doClick(1, 1)" id = "cell11" /></td>
+                            <td> <span onclick = "doClick(1, 2)" id = "cell12" /></td>
+                            <td> <span onclick = "doClick(1, 3)" id = "cell13" /></td>
+                        </tr>
+                        <tr>
+                            <td height = "60"> <span onclick = "doClick(2, 0)" id = "cell20" /></td>
+                            <td> <span onclick = "doClick(2, 1)" id = "cell21" /></td>
+                            <td> <span onclick = "doClick(2, 2)" id = "cell22" /></td>
+                            <td> <span onclick = "doClick(2, 3)" id = "cell23" /></td>
+                        </tr>
+                        <tr>
+                            <td height = "60"> <span onclick = "doClick(3, 0)" id = "cell30" /></td>
+                            <td> <span onclick = "doClick(3, 1)" id = "cell31" /></td>
+                            <td> <span onclick = "doClick(3, 2)" id = "cell32" /></td>
+                            <td> <span onclick = "doClick(3, 3)" id = "cell33" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2020 Greg's Gambits | <a href="mailto:david.alvarez@go.sfcollege.edu">Email Us</a></p>
+        </footer>
+    </body>
+</html>

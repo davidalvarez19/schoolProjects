@@ -1,0 +1,94 @@
+html {
+    background: #fffffc;
+}
+body {
+    color: #88ffff;
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template: repeat(5, auto)/1fr;
+    border: solid black 1px;
+}
+header {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #000040;
+    font-size: 140%;
+    grid-row: 1/2;
+}
+header img {
+    float: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+nav {
+    display: grid;
+    background-color: #88ffff;
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+nav ul {
+    list-style-type: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    font-family: 'Audiowide', cursive;
+    float: left;
+    width: 33.333%;
+}
+nav ul li a {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    padding: .2em 0;
+    color: #000040;
+}
+nav a.current {color: #8803FC;}
+
+nav a:hover, nav a:focus {
+    background-color: #000040;
+    color: white;
+}
+main {
+    display: grid;
+    color: #000040;
+    background-color: #fffffc;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-left: 8%;
+    margin-bottom: 1em;
+}
+main h2 {
+    width: 100%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: italic;
+    grid-row: 3/4;
+    margin: 1em 0 0 10%;
+}
+section {
+    grid-row: 4/5;
+    margin-left: 10%;
+}
+footer {
+    grid-row: 5/6;
+    background-color: #000040;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+footer a:hover, footer a:focus {
+    color: white;
+}
+/*mobile landscape to tablet portrait*/
+@media only screen and (max-width: 1200px){
+    body{width: 80%;}
+}
+/* mobile portrait*/
+@media only screen and (max-width: 600px){
+    body{
+        width: 100%;
+    }
+    header{
+        font-size: 100%;
+    }
+
+}

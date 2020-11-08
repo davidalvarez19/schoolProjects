@@ -1,0 +1,76 @@
+<!--David Alvarez | COP2822.0M1 | Final Project-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Greg's Gambits | About You</title>
+        <link rel="stylesheet" href="styles/normalize.css">
+        <link rel="stylesheet" href="styles/playgames.css">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Josefin+Sans:ital,wght@0,400;1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            @media only screen and (max-width: 600px){
+                main{margin: 0;}
+                main h2{margin: .5em 0 0 5%;}
+                section{margin-left: 5%;}
+            }
+        </style>
+        <script>
+            function getName()
+            {
+                var name = prompt("Please enter your name", " ");
+                document.getElementById('myname').innerHTML = name;
+            }
+            function getUsername()
+            {
+                var username = prompt("What do you want for your username", " ");
+                document.getElementById('myusername').innerHTML = username;
+            }
+            function getAvatar()
+            {
+                window.open('avatars.html', "", "width=800,height=322");
+            }
+            function pickAvatar()
+            {
+                var avatar = prompt("Enter the avatar you want", "Bunny");
+                document.getElementById('myavatar').innerHTML = avatar;
+            }
+            function getHome()
+            {
+                window.open('homes.html', "", "width=800,height=352");
+            }
+            function pickHome()
+            {
+                var home = prompt("Enter the home you want", "Elf Land");
+                document.getElementById('myhome').innerHTML = home;
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="images/superhero.jpg" width="120" height="120" class="floatleft" />
+            <h1>Greg's Gambits</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="play_games.html">Play a Game</a></li>
+                <li><a href="aboutyou.html" class="current">About You</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Tell Greg About You</h2>
+            <section class="about">
+                <p><button type="button" onclick="getName()">Enter your name</button> Hi there, <span id= "myname">Greg</span></p>
+                <p><button type="button" onclick="getUsername()">Enter a username </button> Username: <span id="myusername">KingGreg</span></p>
+                <p><button type="button" onclick="getAvatar()">See the avatar choices</button>
+                <p><button type="button" onclick="pickAvatar()">Select your avatar</button> The avatar you selected is: <span id = "myavatar"> Kitty</span></p>
+                <p><button type="button" onclick="getHome()">See the home choices</button></p>
+                <p><button type="button" onclick="pickHome()">Pick your home</button> The home you selected is: <span id="myhome"> Elf Land</span></p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2020 Greg's Gambits | <a href="mailto:david.alvarez@go.sfcollege.edu">Email Us</a></p>
+        </footer>
+    </body>
+</html>

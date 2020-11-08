@@ -1,0 +1,90 @@
+<!--David Alvarez | COP2822.0M1 | Final Project-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Greg's Gambits | Tic Tac Toe</title>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/playgames.css">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Josefin+Sans:ital,wght@0,400;1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            main{margin: 0;}
+            section{
+                text-align: center;
+                margin: 0;
+            }
+            form{margin-bottom: 2%;}
+            fieldset{border: none;}
+        </style>
+        <script type="text/javascript">
+            function go(position)
+            {
+                var color = "white";
+        
+                if(document.getElementById(position).value == 'X' || document.getElementById(position).value =='x')
+                    var color = "blue";
+                else if (document.getElementById(position).value == 'O' || document.getElementById(position).value =='o')
+                    var color = "orange";
+        
+                document.getElementById(position).style.backgroundColor = color;
+            }
+            function resetGame()
+            {
+                document.getElementById("topleft").style.backgroundColor = "";
+                document.getElementById("topmiddle").style.backgroundColor = "";
+                document.getElementById("topright").style.backgroundColor = "";
+                document.getElementById("middleleft").style.backgroundColor = "";
+                document.getElementById("middlemiddle").style.backgroundColor = "";
+                document.getElementById("middleright").style.backgroundColor = "";
+                document.getElementById("bottomleft").style.backgroundColor = "";
+                document.getElementById("bottommiddle").style.backgroundColor = "";
+                document.getElementById("bottomright").style.backgroundColor = "";
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="../images/superhero.jpg" width="120" height="120" class="floatleft" />
+            <h1>Tic Tac Toe</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../play_games.html">Play a Game</a></li>
+                <li><a href="../aboutyou.html">About You</a></li>
+            </ul>
+        </nav>
+        <main style="padding: 0 2%;">
+            <section>
+                <p>This game is for two players. One player is blue (X), the other is orange (O). The goal is to get three boxes in a row (across, down, or diagonally). When you enter your letter into a box and click Go, the box will change to your color. The game ends either when one player wins or there is a tie.</p>
+                <form name = "tictactoe">
+                    <fieldset>
+                        <input type="text" id="topleft" size="1" value="">
+                        <input type="button" value="Go" onclick="go('topleft');">
+                        <input type="text" id="topmiddle" size="1" value="">
+                        <input type="button" value="Go" onclick="go('topmiddle');">
+                        <input type="text" id="topright" size="1" value="">
+                        <input type="button" value="Go" onclick="go('topright');"><br>
+                        <input type="text" id="middleleft" size="1" value="">
+                        <input type="button" value="Go" onclick="go('middleleft');">
+                        <input type="text" id="middlemiddle" size="1" value="">
+                        <input type="button" value="Go" onclick="go('middlemiddle');">
+                        <input type="text" id="middleright" size="1" value="">
+                        <input type="button" value="Go" onclick="go('middleright');"><br>
+                        <input type="text" id="bottomleft" size="1" value="">
+                        <input type="button" value="Go" onclick="go('bottomleft');">
+                        <input type="text" id="bottommiddle" size="1" value="">
+                        <input type="button" value="Go" onclick="go('bottommiddle');">
+                        <input type="text" id="bottomright" size="1" value="">
+                        <input type="button" value="Go" onclick="go('bottomright');">
+                    </fieldset>
+                    <input type="reset" value="Reset and Play Again" onclick="resetGame();">
+                </form>
+            </section> 
+        </main>
+        <footer>
+            <p>&copy; 2020 Greg's Gambits | <a href="mailto:david.alvarez@go.sfcollege.edu">Email Us</a></p>
+        </footer>
+    </body>
+</html>
